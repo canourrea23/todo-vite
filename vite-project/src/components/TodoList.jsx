@@ -1,17 +1,14 @@
 import { useState } from "react";
 
+function TodoList(props) {
+  return (
+    <div>
+      {props.list.map((item, index) => {
+        console.log(item);
+        return <div key={index}>{item.title} </div>;
+      })}
+    </div>
+  );
+}
 
-
-function TodoList() {
-    const [list, setList] = useState ([
-        {item: 'Walk dog', id: 1},
-        {item: 'Wash car', id: 2},
-        {item: 'Vacuum', id: 3},
-        {item: 'Code stuff', id:4}
-    ]);
-    return(
-            <div>adsf</div>
-    )
-} 
-
-export default TodoList
+export default TodoList;
