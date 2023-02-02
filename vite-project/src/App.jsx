@@ -21,6 +21,19 @@ function App() {
   function handleTitleChange(e) {
     setTitle(e.target.value);
   }
+  const [count, setCount] = useState(0)
+
+  function handleIncreament() {
+    const newCount = count + 1
+    setCount(newCount)
+  }
+  function handleIncreamentChange(e){
+    console.log("boom");
+    setCount(e.target.value)
+  }
+  function handleDecrement() {
+
+  }
   function handleCreateItem() {
     console.log("click");
     const item = { title: title };
@@ -42,6 +55,9 @@ function App() {
         value={title}
         onChange={handleTitleChange}
       ></input>
+      <button onChange={handleIncreamentChange}> + </button>
+      <span>0</span>
+      <button> - </button>
       <button disabled={title === ""} onClick={handleCreateItem}>
         Create
       </button>
