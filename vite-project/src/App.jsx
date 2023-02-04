@@ -21,19 +21,19 @@ function App() {
   function handleTitleChange(e) {
     setTitle(e.target.value);
   }
-  const [count, setCount] = useState(0)
+  
 
-  function handleIncreament() {
-    const newCount = count + 1
-    setCount(newCount)
-  }
-  function handleIncreamentChange(e){
-    console.log("boom");
-    setCount(e.target.value)
-  }
-  function handleDecrement() {
+  // function handleIncreament() {
+  //   const newCount = count + 1
+  //   setCount(newCount)
+  //   onChange(newCount)
+  // }
 
-  }
+  // function handleDecrement() {
+  //   const newCount = count -1
+  //   setCount(newCount)
+  //   onChange(newCount)
+  // }
   function handleCreateItem() {
     console.log("click");
     const item = { title: title };
@@ -42,11 +42,11 @@ function App() {
     setTitle("");
   }
   function deleteItem(index) {
-    console.log("ummpa-lummpa", index);
     const nextList = list.filter((item, currentIndex) => index != currentIndex);
     setList(nextList);
   }
-  console.log(list);
+
+  const [count, setCount] = useState(0)
   return (
     <div>
       <input
@@ -55,9 +55,9 @@ function App() {
         value={title}
         onChange={handleTitleChange}
       ></input>
-      <button onChange={handleIncreamentChange}> + </button>
-      <span>0</span>
-      <button> - </button>
+      <button onClick={() => setCount(count + 1)}> + </button>
+      <span>{count}</span>
+      {/* <button onClick={() => setCount(count - 1)}> - </button> */}
       <button disabled={title === ""} onClick={handleCreateItem}>
         Create
       </button>
