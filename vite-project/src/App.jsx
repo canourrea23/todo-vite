@@ -21,19 +21,7 @@ function App() {
   function handleTitleChange(e) {
     setTitle(e.target.value);
   }
-  
 
-  // function handleIncreament() {
-  //   const newCount = count + 1
-  //   setCount(newCount)
-  //   onChange(newCount)
-  // }
-
-  // function handleDecrement() {
-  //   const newCount = count -1
-  //   setCount(newCount)
-  //   onChange(newCount)
-  // }
   function handleCreateItem() {
     console.log("click");
     const item = { title: title };
@@ -45,8 +33,14 @@ function App() {
     const nextList = list.filter((item, currentIndex) => index != currentIndex);
     setList(nextList);
   }
+  const totalCount = () => {
+    commerce.count.retrieve().then((count) => {
+    setCount(count);
+    })
+  }
 
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState({})
+  console.log(useState, 'hello')
   return (
     <div>
       <input
@@ -55,14 +49,17 @@ function App() {
         value={title}
         onChange={handleTitleChange}
       ></input>
-      <button onClick={() => setCount(count + 1)}> + </button>
-      <span>{count}</span>
-      {/* <button onClick={() => setCount(count - 1)}> - </button> */}
+      <button onClick={() => setCount({[title]:(count[title] ?? 0) + 1})}> + </button> 
+      {/* <button onChange={handleCountChange}> + </button> */}
+      <span>{count[title] ?? 0 }</span>
+      <button onClick={() => setCount(count - 1)}> - </button>
       <button disabled={title === ""} onClick={handleCreateItem}>
         Create
       </button>
+
+      //map of count 
       {list.map((item, index) => {
-        console.log(item);
+        // console.log(item);
         return (
           <div
             key={index}
@@ -72,7 +69,7 @@ function App() {
               justifyContent: "space-between",
             }}
           >
-            <div>{item.title} </div>{" "}
+            <div>{item.title}{count[item.title]}</div>{" "}
             <button onClick={() => deleteItem(index)}>X</button>{" "}
           </div>
         );
