@@ -49,6 +49,7 @@ function App() {
   const [count, setCount] = useState(0)
   return (
     <div>
+      
       <input
         placeholder="enter todo"
         type="text"
@@ -57,7 +58,7 @@ function App() {
       ></input>
       <button onClick={() => setCount(count + 1)}> + </button>
       <span>{count}</span>
-      {/* <button onClick={() => setCount(count - 1)}> - </button> */}
+      <button onClick={() => setCount(count - 1)}> - </button>
       <button disabled={title === ""} onClick={handleCreateItem}>
         Create
       </button>
@@ -77,6 +78,7 @@ function App() {
           </div>
         );
       })}
+      <TodoList/>
     </div>
   );
 }
