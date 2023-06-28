@@ -2,6 +2,11 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import TodoList from "./components/TodoList";
+import { NewTodo } from "./components/NewTodo";
+import { Login } from "./components/Login";
+import { ForgotPassword } from "./components/ForgotPassword";
+import { SignUp } from "./components/SignUp";
+
 
 //build component that can add todo items
 //input field *
@@ -23,12 +28,14 @@ function App() {
   }
 
   function handleCreateItem() {
-    console.log("click");
-    const item = { title: title };
+    // console.log("click");
+    const item = { title: title, count };
     const nextList = [...list, item];
     setList(nextList);
     setTitle("");
+    console.log(nextList);
   }
+
   function deleteItem(index) {
     const nextList = list.filter((item, currentIndex) => index != currentIndex);
     setList(nextList);
@@ -74,6 +81,15 @@ function App() {
           </div>
         );
       })}
+      <TodoList />
+      <Login email="email" password={"password"} submit={() => null} />
+      <ForgotPassword email={"email"} submit={() => null} />
+      <SignUp
+        email={"email"}
+        password={"password"}
+        confirmPassword={"confirmPassword"}
+        submit={() => null}
+      />
     </div>
   );
 }
