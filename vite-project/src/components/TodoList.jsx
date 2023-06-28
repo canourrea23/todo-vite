@@ -30,7 +30,7 @@ function TodoList(props) {
       <button onClick={() => onClick={handleCreateItem}}>
         Create</button>
       {list.map((item, index) => {
-        console.log(item);
+        // console.log(item);
         return (
           <div
             key={index}

@@ -2,6 +2,11 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import TodoList from "./components/TodoList";
+import { NewTodo } from "./components/NewTodo";
+import { Login } from "./components/Login";
+import { ForgotPassword } from "./components/ForgotPassword";
+import { SignUp } from "./components/SignUp";
+
 
 //build component that can add todo items
 //input field *
@@ -21,7 +26,6 @@ function App() {
   function handleTitleChange(e) {
     setTitle(e.target.value);
   }
-  
 
   // function handleIncreament() {
   //   const newCount = count + 1
@@ -35,21 +39,22 @@ function App() {
   //   onChange(newCount)
   // }
   function handleCreateItem() {
-    console.log("click");
-    const item = { title: title };
+    // console.log("click");
+    const item = { title: title, count };
     const nextList = [...list, item];
     setList(nextList);
     setTitle("");
+    console.log(nextList);
   }
+
   function deleteItem(index) {
     const nextList = list.filter((item, currentIndex) => index != currentIndex);
     setList(nextList);
   }
 
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   return (
     <div>
-      
       <input
         placeholder="enter todo"
         type="text"
@@ -63,22 +68,17 @@ function App() {
         Create
       </button>
       {list.map((item, index) => {
-        console.log(item);
-        return (
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              width: "200px",
-              justifyContent: "space-between",
-            }}
-          >
-            <div>{item.title} </div>{" "}
-            <button onClick={() => deleteItem(index)}>X</button>{" "}
-          </div>
-        );
+        return <NewTodo item={item} index={index} deleteItem={deleteItem} />;
       })}
-      <TodoList/>
+      <TodoList />
+      <Login email="email" password={"password"} submit={() => null} />
+      <ForgotPassword email={"email"} submit={() => null} />
+      <SignUp
+        email={"email"}
+        password={"password"}
+        confirmPassword={"confirmPassword"}
+        submit={() => null}
+      />
     </div>
   );
 }
